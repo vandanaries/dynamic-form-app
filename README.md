@@ -41,7 +41,8 @@ npm install
 node server.js
 ```
 
-Runs Express server at **http://localhost:3000***
+Runs Express server at **http://localhost:3000**
+
 Endpoints:
 
 - GET /api/forms → returns forms.json
@@ -49,8 +50,8 @@ Endpoints:
 
 ## 🛠 Development Workflow
 Run both frontend and backend together (optional):
-npm install -g concurrently
-concurrently "cd frontend && npm start" "cd api && node server.js"
+- npm install -g concurrently
+- concurrently "cd frontend && npm start" "cd api && node server.js"
 
 ## 📦 Build for Production
 ```sh

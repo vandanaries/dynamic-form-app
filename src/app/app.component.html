@@ -20,6 +20,7 @@
 
   <div class="form-container">
     <app-form-renderer
+      *ngIf="selectedForm"
       [schema]="
         selectedForm === 'registration' ? registrationSchema : feedbackSchema
       "

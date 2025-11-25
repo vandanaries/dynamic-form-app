@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 
 import { FormRendererComponent } from "./components/form-renderer/form-renderer.component";
 import { FormSchema } from "./models/form.model";
+import { HttpService } from "./services/http.service";
 
 @Component({
   selector: "app-root",
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   showModal = false;
   submittedData: any = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     this.getFormData();
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
    * Sets all available schemas and selects the first form by default.
    */
   getFormData() {
-    this.http.get<any>("assets/form-data.json").subscribe((data) => {
+    this.httpService.getForms().subscribe((data) => {
       this.formSchemas = data;
       this.selectedForm = data[0];
     });

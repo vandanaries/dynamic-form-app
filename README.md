@@ -1,62 +1,66 @@
-Dynamic Form Renderer (Angular + Node API)
-A small Angular standalone-component app that renders forms from a JSON schema and validates input, backed by a simple Node.js/Express API serving JSON data.
+# Dynamic Form Renderer
 
-📂 Project Structure
-my-project/
-frontend/ # Angular 19 app (Dynamic Form Renderer)
-src/
-package.json
-api/ # Node.js + Express backend (mock REST API)
-server.js
-forms.json
-package.json
+A small Angular standalone-component app that renders forms from a JSON schema and validates input.
 
-✨ Features
-Schema-Driven – Define forms in JSON, not code
-Dynamic Rendering – Generate UI on the fly
-Multiple Forms – Render any number of forms based on schema objects
-Built-in Validation – Required fields, min/max length, email validation
-Success Modal – Popup confirmation with submitted data
-Accessibility-First – ARIA labels, screen reader compatibility
-Professional Styling – SCSS
-Reusable Component – One form renderer, infinite forms
-Mock API Integration – Node.js backend serving JSON schemas
+## ✨ Features
 
-🔧 Prerequisites
+- **Schema-Driven** – Define forms in JSON, not code  
+- **Dynamic Rendering** – Generate UI on the fly  
+- **Multiple Forms** – Render any number of forms based on schema objects  
+- **Built-in Validation** – Required fields, min/max length, email validation  
+- **Success Modal** – Popup confirmation after successful submission  
+- **Accessibility-First** – ARIA labels, described-by attributes, screen reader compatibility  
+- **Professional Styling** – SCSS  
+- **Reusable Component** – One form renderer, infinite forms  
+- **No Dependencies** – Just Angular, no extra bloat  
 
-- Node.js v16+
-- Angular CLI (npm install -g @angular/cli)
+## 🔧 Prerequisites
 
-🚀 Quick Start
-Frontend (Angular)
+- Node.js v16+  
+- Angular CLI (`npm install -g @angular/cli`)  
+
+## 🚀 Installation
+
+```sh
+git clone https://github.com/vandanaries/dynamic-form-app.git
+```
+
+## 🚀 Quick Start
+### Frontend (Angular)
+```sh
 cd frontend
 npm install
 npm start # or ng serve
+```
+Runs Angular app at **http://localhost:4200**
 
-Runs Angular app at http://localhost:4200
-Backend (API)
+### Backend (API)
+```sh
 cd api
 npm install
 node server.js
+```
 
-Runs Express server at http://localhost:3000
+Runs Express server at **http://localhost:3000***
 Endpoints:
 
 - GET /api/forms → returns forms.json
 - POST /api/forms → add a new form (JSON body)
 
-🛠 Development Workflow
+## 🛠 Development Workflow
 Run both frontend and backend together (optional):
 npm install -g concurrently
 concurrently "cd frontend && npm start" "cd api && node server.js"
 
-📦 Build for Production
+## 📦 Build for Production
+```sh
 cd frontend
 npm run build
+```
 
 Angular build output will be in frontend/dist/.
 
-📑 JSON Schema Format
+## 📑 JSON Schema Format
 The app expects a schema matching the FormSchema interface:
 
 - FormSchema
@@ -78,7 +82,8 @@ The app expects a schema matching the FormSchema interface:
 - message?: string
 - minLength?, maxLength?, min?, max?
 
-📋 Example Schema
+## 📋 Example Schema
+```js
 {
 "title": "Example Form",
 "fields": [
@@ -102,17 +107,19 @@ The app expects a schema matching the FormSchema interface:
 }
 ]
 }
+```
 
-📊 Example Output
+## 📊 Example Output
 On successful submission, the app shows a modal popup with submitted data:
+```js
 {
 "fullName": "John Doe",
 "email": "johndoe@example.com",
 "hobbies": ["Reading","Music"],
 "subscribe": true
 }
-
-📌 Notes
+```
+## 📌 Notes
 
 - Field rendering: FormFieldComponent
 - Validation rules: ValidationService

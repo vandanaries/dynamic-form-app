@@ -7,7 +7,10 @@
         "name": "fullName",
         "type": "text",
         "required": true,
-        "placeholder": "Enter your full name"
+        "placeholder": "Enter your full name",
+        "ariaLabel": "Full Name",
+        "ariaDescribedBy": "fullNameHelp",
+        "helperText": "Please enter your legal full name"
       },
       {
         "label": "Email",
@@ -18,20 +21,29 @@
           "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
           "message": "Invalid email address"
         },
-        "placeholder": "you@example.com"
+        "placeholder": "you@example.com",
+        "ariaLabel": "Email Address",
+        "ariaDescribedBy": "emailHelp",
+        "helperText": "We’ll never share your email"
       },
       {
         "label": "Date of Birth",
         "name": "dob",
         "type": "date",
-        "required": false
+        "required": false,
+        "ariaLabel": "Date of Birth",
+        "ariaDescribedBy": "dobHelp",
+        "helperText": "Select your birth date"
       },
       {
         "label": "Gender",
         "name": "gender",
         "type": "dropdown",
         "options": ["Male", "Female", "Other"],
-        "required": true
+        "required": true,
+        "ariaLabel": "Gender",
+        "ariaDescribedBy": "genderHelp",
+        "helperText": "Choose your gender from the list"
       },
       {
         "label": "Hobbies",
@@ -45,20 +57,29 @@
           "Gaming",
           "Cooking"
         ],
-        "required": false
+        "required": false,
+        "ariaLabel": "Hobbies",
+        "ariaDescribedBy": "hobbiesHelp",
+        "helperText": "Select one or more hobbies"
       },
       {
         "label": "Subscribe to newsletter",
         "name": "subscribe",
         "type": "checkbox",
-        "required": false
+        "required": false,
+        "ariaLabel": "Subscribe to newsletter",
+        "ariaDescribedBy": "subscribeHelp",
+        "helperText": "Tick the box if you want to receive updates"
       },
       {
         "label": "About Yourself",
         "name": "about",
         "type": "textarea",
         "required": false,
-        "placeholder": "Tell us about yourself..."
+        "placeholder": "Tell us about yourself...",
+        "ariaLabel": "About Yourself",
+        "ariaDescribedBy": "aboutHelp",
+        "helperText": "Write a short description about yourself"
       }
     ]
   },
@@ -70,7 +91,10 @@
         "name": "name",
         "type": "text",
         "required": true,
-        "placeholder": "Enter your full name"
+        "placeholder": "Enter your full name",
+        "ariaLabel": "Your Name",
+        "ariaDescribedBy": "nameHelp",
+        "helperText": "Please enter your full name"
       },
       {
         "label": "Your Email",
@@ -81,14 +105,20 @@
           "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
           "message": "Please provide a valid email"
         },
-        "placeholder": "john@example.com"
+        "placeholder": "john@example.com",
+        "ariaLabel": "Your Email",
+        "ariaDescribedBy": "feedbackEmailHelp",
+        "helperText": "We’ll use this email to contact you"
       },
       {
         "label": "Product Rating",
         "name": "rating",
         "type": "dropdown",
         "options": ["Excellent", "Good", "Average", "Poor"],
-        "required": true
+        "required": true,
+        "ariaLabel": "Product Rating",
+        "ariaDescribedBy": "ratingHelp",
+        "helperText": "Select how you rate the product"
       },
       {
         "label": "Feedback Category",
@@ -101,20 +131,29 @@
           "Performance",
           "Other"
         ],
-        "required": true
+        "required": true,
+        "ariaLabel": "Feedback Category",
+        "ariaDescribedBy": "categoryHelp",
+        "helperText": "Choose one or more categories"
       },
       {
         "label": "Your Feedback",
         "name": "message",
         "type": "textarea",
         "required": true,
-        "placeholder": "Please share your detailed feedback..."
+        "placeholder": "Please share your detailed feedback...",
+        "ariaLabel": "Your Feedback",
+        "ariaDescribedBy": "messageHelp",
+        "helperText": "Provide detailed feedback about your experience"
       },
       {
         "label": "Would you recommend us?",
         "name": "recommend",
         "type": "checkbox",
-        "required": false
+        "required": false,
+        "ariaLabel": "Would you recommend us?",
+        "ariaDescribedBy": "recommendHelp",
+        "helperText": "Tick the box if you would recommend us"
       }
     ]
   }

@@ -14,6 +14,7 @@
       [value]="value || ''"
       [disabled]="field.disabled"
       [readonly]="field.readonly"
+      [attr.aria-label]="field.ariaLabel ? field.ariaLabel : null"
       (input)="onValueChange(textInput.value)"
       (blur)="onFieldBlur()"
     />
@@ -33,6 +34,7 @@
       [value]="value || ''"
       [disabled]="field.disabled"
       [readonly]="field.readonly"
+      [attr.aria-label]="field.ariaLabel ? field.ariaLabel : null"
       (input)="onValueChange(dateInput.value)"
       (blur)="onFieldBlur()"
     />
@@ -50,6 +52,7 @@
       class="field-input"
       [value]="value || ''"
       [disabled]="field.disabled"
+      [attr.aria-label]="field.ariaLabel ? field.ariaLabel : null"
       (change)="onValueChange(selectInput.value)"
       (blur)="onFieldBlur()"
     >
@@ -72,6 +75,7 @@
           type="checkbox"
           [checked]="isOptionSelected(option)"
           [disabled]="field.disabled"
+          [attr.aria-label]="field.ariaLabel ? field.ariaLabel : null"
           (change)="onMultiselectChange(option, $event)"
         />
         <span>{{ option }}</span>
@@ -87,6 +91,7 @@
         type="checkbox"
         [checked]="value || false"
         [disabled]="field.disabled"
+        [attr.aria-label]="field.ariaLabel ? field.ariaLabel : null"
         (change)="onCheckboxChange($event)"
         (blur)="onFieldBlur()"
       />
@@ -109,14 +114,19 @@
       [value]="value || ''"
       [disabled]="field.disabled"
       [readonly]="field.readonly"
+      [attr.aria-label]="field.ariaLabel ? field.ariaLabel : null"
       rows="5"
       (input)="onValueChange(textareaInput.value)"
       (blur)="onFieldBlur()"
     ></textarea>
   </ng-container>
 
+  <!-- <small *ngIf="field.ariaDescribedBy" [id]="field.ariaDescribedBy">{{
+      field.helperText
+    }}</small> -->
+
   <!-- Error Message -->
-  <span *ngIf="error && submitted" class="error-message">
+  <span *ngIf="error && submitted" class="error-message" aria-live="polite">
     {{ error }}
   </span>
 </div>

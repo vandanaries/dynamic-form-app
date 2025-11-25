@@ -25,6 +25,10 @@ export class AppComponent implements OnInit {
     this.getFormData();
   }
 
+  /**
+   * Loads form schema data from a local JSON file.
+   * Sets all available schemas and selects the first form by default.
+   */
   getFormData() {
     this.http.get<any>("assets/form-data.json").subscribe((data) => {
       this.formSchemas = data;
@@ -33,8 +37,6 @@ export class AppComponent implements OnInit {
   }
 
   onFormSubmit(data: any) {
-    console.log("Form submitted:", data);
-    // alert("Form submitted successfully! Check console for details.");
     this.submittedData = data;
     this.showModal = true; // open modal
   }

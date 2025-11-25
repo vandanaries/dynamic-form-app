@@ -126,7 +126,7 @@
 }
 
 .close-btn:hover {
-  color: #333;
+  color: #555;
 }
 
 .modal-body {
@@ -146,17 +146,20 @@
 }
 
 .primary-btn {
-  background: #007bff;
-  color: #fff;
+  padding: 0.7rem 1.5rem;
   border: none;
-  padding: 0.6rem 1.2rem;
   border-radius: 4px;
-  cursor: pointer;
   font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #1a5490;
+  color: white;
 }
 
 .primary-btn:hover {
-  background: #0056b3;
+  background: #154078;
+  box-shadow: 0 2px 8px rgba(26, 84, 144, 0.2);
 }
 
 @keyframes fadeIn {

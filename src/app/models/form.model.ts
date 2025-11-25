@@ -18,6 +18,9 @@ export interface FormField {
   disabled?: boolean;
   readonly?: boolean;
   hidden?: boolean;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
+  helperText?: string;
 }
 
 export interface FormSchema {

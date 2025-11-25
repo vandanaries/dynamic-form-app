@@ -53,6 +53,10 @@ export class FormRendererComponent {
     }
   }
 
+  /**
+   * Validates a form field when it loses focus.
+   * Runs only after submission and updates the errors object.
+   */
   onFieldBlur(fieldName: string) {
     if (this.submitted) {
       const field = this.schema.fields.find((f) => f.name === fieldName);
@@ -85,6 +89,12 @@ export class FormRendererComponent {
     }
   }
 
+  /**
+   * Builds a cleaned submission payload from form data.
+   * This avoids sending unnecessary empty fields to the backend.
+   *
+   * @returns FormValue object containing validated submission data.
+   */
   private prepareSubmitData(): FormValue {
     const data: FormValue = {};
     this.schema.fields.forEach((field) => {
@@ -107,6 +117,9 @@ export class FormRendererComponent {
     this.initializeFormData();
   }
 
+  /**
+ * Returns only fields that are not marked as hidden.
+ */
   getVisibleFields() {
     return this.schema.fields.filter((field) => !field.hidden);
   }

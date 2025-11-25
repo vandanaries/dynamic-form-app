@@ -16,6 +16,9 @@ export class AppComponent implements OnInit {
   formSchemas!: any;
   selectedForm!: FormSchema;
 
+  showModal = false;
+  submittedData: any = null;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -31,6 +34,12 @@ export class AppComponent implements OnInit {
 
   onFormSubmit(data: any) {
     console.log("Form submitted:", data);
-    alert("Form submitted successfully! Check console for details.");
+    // alert("Form submitted successfully! Check console for details.");
+    this.submittedData = data;
+    this.showModal = true; // open modal
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 }

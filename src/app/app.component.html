@@ -29,3 +29,21 @@
   </div>
   }
 </div>
+
+<!-- Success Modal -->
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>✅ Form Submitted Successfully</h2>
+      <!-- <button class="close-btn" (click)="closeModal()">×</button> -->
+    </div>
+
+    <div class="modal-body">
+      <pre>{{ submittedData | json }}</pre>
+    </div>
+
+    <div class="modal-footer">
+      <button class="primary-btn" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>

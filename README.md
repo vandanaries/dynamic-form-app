@@ -12,16 +12,13 @@ A small Angular standalone-component app that renders forms from a JSON schema a
 **No Dependencies** - Just Angular, no extra bloat
 
 ### Prerequisites
-
 - Node.js v16+
 - Angular CLI (`npm install -g @angular/cli`)
 
 ### Installation
-
 git clone https://github.com/vandanaries/dynamic-form-app.git
 
 ## Quick start
-
 1. Install dependencies
 
 ```sh
@@ -45,16 +42,13 @@ npm run build
 (These scripts are defined in [package.json](package.json).)
 
 ## JSON schema format
-
-The app expects a schema matching the [`FormSchema`](src/app/models/form.model.ts) interface:
+The app expects a json schema in asset/form-data.json matching the [`FormSchema`](src/app/models/form.model.ts) interface:
 
 - FormSchema
-
   - title: string
   - fields: FormField[]
 
 - FormField (key properties)
-
   - label: string — field label shown to user
   - name: string — property used in form data object
   - type: "text" | "date" | "dropdown" | "multiselect" | "checkbox" | "textarea"
@@ -65,6 +59,9 @@ The app expects a schema matching the [`FormSchema`](src/app/models/form.model.t
   - disabled?: boolean
   - readonly?: boolean
   - hidden?: boolean
+  - ariaLabel?: string;
+  - ariaDescribedBy?: string;
+  - helperText?: string;
 
 - ValidationRule
   - pattern?: string — regex as string
@@ -74,7 +71,6 @@ The app expects a schema matching the [`FormSchema`](src/app/models/form.model.t
 See the declared types here: [`FormSchema`, `FormField`, `ValidationRule`](src/app/models/form.model.ts).
 
 ## Example schema
-
 ```json
 {
   "title": "Example Form",
@@ -111,14 +107,13 @@ See the declared types here: [`FormSchema`, `FormField`, `ValidationRule`](src/a
   ]
 }
 ```
-
 Use this shape when passing a schema to [`FormRendererComponent`](src/app/components/form-renderer/form-renderer.component.ts).
 
 ## Example output
 
 When a submission passes validation, the renderer logs and emits the prepared data:
 
-Console output example (from [`FormRendererComponent.submitForm()`](src/app/components/form-renderer/form-renderer.component.ts)):
+Output example (from [`FormRendererComponent.submitForm()`](src/app/components/form-renderer/form-renderer.component.ts)):
 
 ```
 Form Submission Successful: { "fullName": "John Doe", "email": "johndoe@example.com", "hobbies": ["Reading","Music"], "subscribe": true }
@@ -129,9 +124,17 @@ Then the app-level handler in [`AppComponent.onFormSubmit`](src/app/app.componen
 ```
 Form submitted: { "fullName": "John Doe", "email": "johndoe@example.com", "hobbies": ["Reading","Music"], "subscribe": true }
 ```
+## Success modal displays:
+✅ Form submitted successfully!
 
+## Accessibility
+- Each field supports aria-label and aria-describedby for screen reader compatibility
+- Helper text can be visually hidden but still accessible
+- Error messages use aria-live for real-time announcements
+  
 ## Notes / pointers
-
 - Field rendering and events: see [`FormFieldComponent`](src/app/components/form-field/form-field.component.ts).
 - Validation rules applied by [`ValidationService`](src/app/services/validation.service.ts).
 - To customize initial form values or schema selection, update [`AppComponent`](src/app/app.component.ts).
+
+

@@ -3,29 +3,29 @@
     <h1>Dynamic Form Renderer</h1>
   </div>
 
+  @if(formSchemas?.length > 0) {
   <div class="form-selector">
+    @for(form of formSchemas; track $index){
     <button
-      [class.active]="selectedForm === 'registration'"
-      (click)="selectedForm = 'registration'"
+      [class.active]="selectedForm.title === form.title"
+      (click)="selectedForm = form"
     >
-      User Registration
+      {{ form.title }}
     </button>
-    <button
-      [class.active]="selectedForm === 'feedback'"
-      (click)="selectedForm = 'feedback'"
-    >
-      Product Feedback
-    </button>
+    }
   </div>
 
   <div class="form-container">
     <app-form-renderer
-      *ngIf="selectedForm"
-      [schema]="
-        selectedForm === 'registration' ? registrationSchema : feedbackSchema
-      "
+      [schema]="selectedForm"
       (onSubmit)="onFormSubmit($event)"
     >
     </app-form-renderer>
   </div>
+  } @else {
+  <div class="loading">
+    <div class="spinner"></div>
+    <p>Loading forms, please wait...</p>
+  </div>
+  }
 </div>

@@ -13,9 +13,8 @@ import { FormSchema } from "./models/form.model";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  selectedForm!: "registration" | "feedback"; // = "registration";
-  registrationSchema!: FormSchema;
-  feedbackSchema!: FormSchema;
+  formSchemas!: any;
+  selectedForm!: FormSchema;
 
   constructor(private http: HttpClient) {}
 
@@ -25,9 +24,8 @@ export class AppComponent implements OnInit {
 
   getFormData() {
     this.http.get<any>("assets/form-data.json").subscribe((data) => {
-      this.registrationSchema = data.registrationSchema;
-      this.feedbackSchema = data.feedbackSchema;
-      this.selectedForm = "registration";
+      this.formSchemas = data;
+      this.selectedForm = data[0];
     });
   }
 

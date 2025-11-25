@@ -1,0 +1,23 @@
+<form (ngSubmit)="submitForm()" class="form-wrapper">
+  <div class="form-header">
+    <h2>{{ schema.title }}</h2>
+  </div>
+
+  <div class="form-body">
+    <app-form-field
+      *ngFor="let field of getVisibleFields()"
+      [field]="field"
+      [value]="formData[field.name]"
+      [error]="errors[field.name]"
+      [submitted]="submitted"
+      (onChange)="onFieldChange(field.name, $event)"
+      (onBlur)="onFieldBlur(field.name)"
+    >
+    </app-form-field>
+  </div>
+
+  <div class="form-footer">
+    <button type="submit" class="submit-btn">Submit</button>
+    <button type="button" class="reset-btn" (click)="resetForm()">Reset</button>
+  </div>
+</form>

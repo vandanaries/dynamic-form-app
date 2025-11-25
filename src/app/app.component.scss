@@ -1,0 +1,54 @@
+.app-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #1a5490;
+    font-weight: 600;
+  }
+}
+
+.form-selector {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+
+  button {
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #ddd;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #1a5490;
+      background: #f8fafc;
+    }
+
+    &.active {
+      background: #1a5490;
+      color: white;
+      border-color: #1a5490;
+    }
+  }
+}
+
+.form-container {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}

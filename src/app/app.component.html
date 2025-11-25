@@ -1,0 +1,30 @@
+<div class="app-container">
+  <div class="header">
+    <h1>Dynamic Form Renderer</h1>
+  </div>
+
+  <div class="form-selector">
+    <button
+      [class.active]="selectedForm === 'registration'"
+      (click)="selectedForm = 'registration'"
+    >
+      User Registration
+    </button>
+    <button
+      [class.active]="selectedForm === 'feedback'"
+      (click)="selectedForm = 'feedback'"
+    >
+      Product Feedback
+    </button>
+  </div>
+
+  <div class="form-container">
+    <app-form-renderer
+      [schema]="
+        selectedForm === 'registration' ? registrationSchema : feedbackSchema
+      "
+      (onSubmit)="onFormSubmit($event)"
+    >
+    </app-form-renderer>
+  </div>
+</div>

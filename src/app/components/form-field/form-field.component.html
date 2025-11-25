@@ -1,0 +1,122 @@
+<div class="form-field" [class.field-error]="error && submitted">
+  <!-- Text Input -->
+  <ng-container *ngIf="field.type === 'text'">
+    <label [for]="field.name" class="field-label">
+      {{ field.label }}
+      <span *ngIf="field.required" class="required">*</span>
+    </label>
+    <input
+      #textInput
+      [id]="field.name"
+      type="text"
+      class="field-input"
+      [placeholder]="field.placeholder || ''"
+      [value]="value || ''"
+      [disabled]="field.disabled"
+      [readonly]="field.readonly"
+      (input)="onValueChange(textInput.value)"
+      (blur)="onFieldBlur()"
+    />
+  </ng-container>
+
+  <!-- Date Input -->
+  <ng-container *ngIf="field.type === 'date'">
+    <label [for]="field.name" class="field-label">
+      {{ field.label }}
+      <span *ngIf="field.required" class="required">*</span>
+    </label>
+    <input
+      #dateInput
+      [id]="field.name"
+      type="date"
+      class="field-input"
+      [value]="value || ''"
+      [disabled]="field.disabled"
+      [readonly]="field.readonly"
+      (input)="onValueChange(dateInput.value)"
+      (blur)="onFieldBlur()"
+    />
+  </ng-container>
+
+  <!-- Dropdown -->
+  <ng-container *ngIf="field.type === 'dropdown'">
+    <label [for]="field.name" class="field-label">
+      {{ field.label }}
+      <span *ngIf="field.required" class="required">*</span>
+    </label>
+    <select
+      #selectInput
+      [id]="field.name"
+      class="field-input"
+      [value]="value || ''"
+      [disabled]="field.disabled"
+      (change)="onValueChange(selectInput.value)"
+      (blur)="onFieldBlur()"
+    >
+      <option value="">-- Select an option --</option>
+      <option *ngFor="let option of field.options" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+  </ng-container>
+
+  <!-- Multiselect (Checkboxes) -->
+  <ng-container *ngIf="field.type === 'multiselect'">
+    <label class="field-label">
+      {{ field.label }}
+      <span *ngIf="field.required" class="required">*</span>
+    </label>
+    <div class="multiselect-group">
+      <label *ngFor="let option of field.options" class="checkbox-label">
+        <input
+          type="checkbox"
+          [checked]="isOptionSelected(option)"
+          [disabled]="field.disabled"
+          (change)="onMultiselectChange(option, $event)"
+        />
+        <span>{{ option }}</span>
+      </label>
+    </div>
+  </ng-container>
+
+  <!-- Checkbox -->
+  <ng-container *ngIf="field.type === 'checkbox'">
+    <label class="checkbox-label single-checkbox">
+      <input
+        [id]="field.name"
+        type="checkbox"
+        [checked]="value || false"
+        [disabled]="field.disabled"
+        (change)="onCheckboxChange($event)"
+        (blur)="onFieldBlur()"
+      />
+      <span>{{ field.label }}</span>
+      <span *ngIf="field.required" class="required">*</span>
+    </label>
+  </ng-container>
+
+  <!-- Textarea -->
+  <ng-container *ngIf="field.type === 'textarea'">
+    <label [for]="field.name" class="field-label">
+      {{ field.label }}
+      <span *ngIf="field.required" class="required">*</span>
+    </label>
+    <textarea
+      #textareaInput
+      [id]="field.name"
+      class="field-input field-textarea"
+      [placeholder]="field.placeholder || ''"
+      [value]="value || ''"
+      [disabled]="field.disabled"
+      [readonly]="field.readonly"
+      rows="5"
+      (input)="onValueChange(textareaInput.value)"
+      (blur)="onFieldBlur()"
+    ></textarea>
+  </ng-container>
+
+  <!-- Error Message -->
+  <span *ngIf="error && submitted" class="error-message">
+    {{ error }}
+  </span>
+</div>

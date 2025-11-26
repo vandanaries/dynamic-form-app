@@ -72,6 +72,20 @@
         "helperText": "Tick the box if you want to receive updates"
       },
       {
+        "label": "Preferred Newsletter Topics",
+        "name": "newsletterTopics",
+        "type": "multiselect",
+        "options": ["Technology", "Sports", "Music", "Travel", "Cooking"],
+        "required": false,
+        "ariaLabel": "Newsletter Topics",
+        "ariaDescribedBy": "newsletterTopicsHelp",
+        "helperText": "Choose topics you’d like to receive",
+        "conditional": {
+          "field": "subscribe",
+          "value": true
+        }
+      },
+      {
         "label": "About Yourself",
         "name": "about",
         "type": "textarea",

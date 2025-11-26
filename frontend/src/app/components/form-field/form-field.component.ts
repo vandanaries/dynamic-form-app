@@ -15,6 +15,7 @@ export class FormFieldComponent {
   @Input() value: any;
   @Input() error: string | undefined;
   @Input() submitted = false;
+  @Input() hide!: FormField;
   @Output() onChange = new EventEmitter<any>();
   @Output() onBlur = new EventEmitter<void>();
 

@@ -1,7 +1,12 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { FormSchema, FormValue, FieldError } from "../../models/form.model";
+import {
+  FormSchema,
+  FormValue,
+  FieldError,
+  FormField,
+} from "../../models/form.model";
 import { ValidationService } from "../../services/validation.service";
 import { FormFieldComponent } from "../form-field/form-field.component";
 
@@ -118,9 +123,79 @@ export class FormRendererComponent {
   }
 
   /**
- * Returns only fields that are not marked as hidden.
- */
+   * Determines which form fields should be rendered based on schema rules and current form data.
+   *
+   * Logic flow:
+   * 1. Excludes fields explicitly marked as `hidden`.
+   * 2. Includes fields without any conditional rules.
+   * 3. Evaluates compound conditions:
+   *    - `all`: field is visible only if all specified conditions are satisfied (logical AND).
+   *    - `any`: field is visible if at least one condition is satisfied (logical OR).
+   * 4. Evaluates simple condition: { field, value } → visible if the target field matches the expected value.
+   *
+   */
   getVisibleFields() {
-    return this.schema.fields.filter((field) => !field.hidden);
+    const visibleFields = this.schema.fields.filter((field) => {
+      // 1. If explicitly hidden → never show
+      if (field.hidden) {
+        return false;
+      }
+
+      // 2. If no conditional rule → always show
+      if (!field.conditional) {
+        return true;
+      }
+
+      // 3. Compound conditional: support "all" and "any"
+      if (field.conditional.all) {
+        return field.conditional.all.every(
+          (cond) => this.formData[cond.field] === cond.value
+        );
+      }
+
+      if (field.conditional.any) {
+        return field.conditional.any.some(
+          (cond) => this.formData[cond.field] === cond.value
+        );
+      }
+
+      // 4. Simple conditional: { field: "subscribe", value: true }
+      if (field.conditional.field) {
+        const targetValue = this.formData[field.conditional.field];
+        return targetValue === field.conditional.value;
+      }
+
+      // 5. Fallback → not visible
+      return false;
+    });
+
+    // 🔹 Reset values of fields that are NOT visible
+    this.schema.fields.forEach((field) => {
+      if (!visibleFields.includes(field)) {
+        this.formData[field.name] = this.getDefaultValue(field);
+      }
+    });
+
+    return visibleFields;
+  }
+
+  /**
+   * Returns a default/reset value for a field based on its type
+   */
+  getDefaultValue(field: FormField): any {
+    switch (field.type) {
+      case "text":
+      case "textarea":
+      case "date":
+        return "";
+      case "dropdown":
+        return null;
+      case "multiselect":
+        return [];
+      case "checkbox":
+        return false;
+      default:
+        return null;
+    }
   }
 }

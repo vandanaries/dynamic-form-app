@@ -7,6 +7,13 @@ export interface ValidationRule {
   max?: number;
 }
 
+export interface ConditionalRule {
+  field?: string;
+  value?: any;
+  all?: { field: string; value: any }[];
+  any?: { field: string; value: any }[];
+}
+
 export interface FormField {
   label: string;
   name: string;
@@ -21,6 +28,7 @@ export interface FormField {
   ariaLabel?: string;
   ariaDescribedBy?: string;
   helperText?: string;
+  conditional?: ConditionalRule;
 }
 
 export interface FormSchema {
